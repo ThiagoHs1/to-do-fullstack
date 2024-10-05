@@ -8,13 +8,14 @@ export default {
     const newTodoText = ref('');
 
     const ADD_TODO = gql`
-      mutation AddTodo($title: String!) {
-        addTodo(title: $title) {
-          id
-          title
-          completed
-        }
-      }
+      mutation($title: String!) {
+    addTodo(title: $title) {
+        id
+        title
+        completed
+    }
+}
+
     `;
 
     const { mutate: addTodoMutation } = useMutation(ADD_TODO);
@@ -22,8 +23,8 @@ export default {
     const addTodo = () => {
       if (newTodoText.value.trim()) {
         addTodoMutation({ title: newTodoText.value });
-        emit('add-todo', newTodoText.value); // Emitindo o evento para o componente pai
-        newTodoText.value = ''; // Limpa o campo de entrada após adicionar a tarefa
+        emit('add-todo', newTodoText.value); 
+        newTodoText.value = ''; 
       }
     };
 
@@ -36,16 +37,16 @@ export default {
 </script>
 
 <template>
-  <div class="add-todo flex items-center mb-4">
+  <div class="add-todo container mx-auto mt-20 w-3/5">
     <input 
       v-model="newTodoText" 
       type="text" 
       placeholder="Digite uma nova tarefa" 
-      class="flex-1 border border-gray-300 rounded-md px-4 py-2 mr-2"
+      class="px-4 py-2 border border-gray-300 rounded-md w-3/5"
     />
     <button 
       @click="addTodo" 
-      class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+      class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition w-1/5 ml-4"
     >
       Adicionar
     </button>

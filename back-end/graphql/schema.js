@@ -39,12 +39,17 @@ const Mutation = new GraphQLObjectType({
         addTodo: {
             type: TodoType,
             args: {
-                title: { type: GraphQLString },
+              title: { type: GraphQLString }, // Altere de 'text' para 'title'
             },
             resolve(parent, args) {
-                return Todo.create({ title: args.title });
-            }
+              const todo = new Todo({
+                title: args.title, // Altere de 'text' para 'title'
+                completed: false,
+              });
+              return todo.save();
+            },
         },
+        
         updateTodo: {
             type: TodoType,
             args: {
