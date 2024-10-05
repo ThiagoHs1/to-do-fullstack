@@ -22,7 +22,7 @@
     },
     methods: {
     submitTodo() { // Renomeado para submitTodo
-      console.log(this.newTodoText);
+   
       this.$emit('add-todo', this.newTodoText); 
       this.newTodoText = ''; 
     }
