@@ -1,0 +1,26 @@
+/* global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-color: #42b983; /* Define uma cor primária */
+    --font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  h1, h2, h3 {
+    color: var(--primary-color);
+  }
+  
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
