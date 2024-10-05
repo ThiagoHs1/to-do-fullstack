@@ -5,10 +5,9 @@
         <span v-if="!todo.editing" :class="{ 'line-through': todo.completed }">{{ todo.text }}</span>
         <EditTodo 
           v-else 
-          :todo="{ index, text: todo.text }" 
-          @save-todo="saveTodo" 
-          @cancel-edit="cancelEdit(index)" 
-          v-if="todo.editing" 
+          :todo="{ ...todo, index }"
+          @save-todo="saveTodo"
+          @cancel-edit="cancelEdit(index)"
         />
         <div>
           <input type="checkbox" v-model="todo.completed" class="mr-2">
@@ -20,18 +19,19 @@
   </div>
 </template>
 
+
 <script>
 import EditTodo from './EditTodo.vue';
 
 export default {
   components: {
-    EditTodo
+    EditTodo, // Certifique-se de registrar o componente aqui
   },
   props: {
     todos: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     removeTodo(index) {
@@ -45,10 +45,7 @@ export default {
     },
     cancelEdit(index) {
       this.$emit('cancel-edit', index);
-    }
-  }
-}
+    },
+  },
+};
 </script>
-  
-  <style scoped>
- </style>

@@ -3,13 +3,11 @@ import { ref } from 'vue';
 import NavBar from '@/components/NavBar.vue';
 import AddTodo from '@/components/AddTodo.vue';
 import TodoList from '@/components/TodoList.vue';
-import EditTodo from '@/components/EditTodo.vue';
 
 // Estado das tarefas
 const todos = ref([]);
 
-// Define a função addTodo dentro do setup
-
+// Define as funções do setup
 function addTodo(newTodo) {
   todos.value.push({ text: newTodo, completed: false, editing: false });
 }
@@ -30,8 +28,6 @@ function saveTodo(updatedTodo) {
 function cancelEdit(index) {
   todos.value[index].editing = false;
 }
-
-
 </script>
 
 <template>
@@ -43,7 +39,5 @@ function cancelEdit(index) {
     @toggle-edit="toggleEdit" 
     @save-todo="saveTodo" 
     @cancel-edit="cancelEdit"
-     
   />
-  <EditTodo  /> 
 </template>

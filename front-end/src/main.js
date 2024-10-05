@@ -1,6 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import './assets/main.css'
+// src/main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router'; // Importando o router
+import { apolloClient } from './apollo'; // Importação do Apollo Client
+import { provideApolloClient } from '@vue/apollo-composable'; // Importação do Apollo composable
+import './assets/main.css';
 
-createApp(App).use(router).mount('#app')
+
+const app = createApp(App);
+
+// Fornece o Apollo Client para os componentes Vue
+provideApolloClient(apolloClient);
+
+app.use(router); // Registrando o router na aplicação
+app.mount('#app');
